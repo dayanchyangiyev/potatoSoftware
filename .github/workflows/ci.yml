@@ -1,13 +1,13 @@
-name: ci
-
-on:
-  push:
-  pull_request:
+name: tests
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Hello from $(uname -a)"
-      - run: ls -la
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python manage.py test courses
