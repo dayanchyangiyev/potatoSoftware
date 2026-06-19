@@ -1,0 +1,16 @@
+{% extends "courses/base.html" %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ course.title }}</h1>
+<p>{{ course.instructor }}</p>
+<p><a href="{% url 'category_detail' course.category.pk %}">{{ course.category.name }}</a> | {{ course.get_semester_display }} {{ course.year }}</p>
+<p>{{ course.credits }} credits</p>
+
+{% if course.description %}
+<p>{{ course.description }}</p>
+{% endif %}
+
+<p><a href="{% url 'course_list' %}">Back to catalog</a></p>
+{% endblock %}
